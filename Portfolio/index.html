@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.8/css/line.css">
+
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <link rel="shortcut icon" href="assets/images/favicon.ico" type="image/x-icon">
+
+    <title>Michael Muega / Portfolio</title>
+    
+    <style>
+        /* Updated styles for the about section only */
+        #about .row {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        #about .col {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Skills section - now appears first and centered */
+        .skills-box {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 60px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+            order: 1; /* Skills appear first */
+            width: 100%;
+            min-height: 500px;
+        }
+
+        .skills-title h2 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .skills-categories {
+            display: grid !important;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px !important;
+            justify-items: center;
+        }
+
+        .skills-category {
+            text-align: center;
+            min-width: 220px;
+        }
+
+        .skills-category h3 {
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #667eea;
+            display: inline-block;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .skills-list span {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .skills-list span:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .skills-list span:active {
+            transform: scale(0.95);
+        }
+
+        /* Animation classes */
+        .skills-category {
+            transition: all 0.3s ease;
+        }
+
+        .skills-category.animate {
+            animation: skillPulse 0.6s ease-in-out;
+        }
+
+        @keyframes skillPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(102, 126, 234, 0.6); }
+            100% { transform: scale(1); }
+        }
+
+        .skills-list span.clicked {
+            animation: skillBounce 0.5s ease-in-out;
+            background: linear-gradient(45deg, #ff6b6b, #feca57) !important;
+        }
+
+        @keyframes skillBounce {
+            0% { transform: scale(1); }
+            30% { transform: scale(1.2) rotate(5deg); }
+            60% { transform: scale(0.9) rotate(-3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .skills-category.shake {
+            animation: categoryShake 0.5s ease-in-out;
+        }
+
+        @keyframes categoryShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* About info section - appears second */
+        .about-info {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            order: 2; /* About info appears second */
+        }
+
+        .about-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            margin-top: 25px;
+            padding-left: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .about-info h3:first-child {
+            margin-top: 0;
+        }
+
+        .about-info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        /* Responsive design for about section */
+        @media (max-width: 768px) {
+            .skills-categories {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px !important;
+            }
+
+            .skills-box, .about-info {
+                padding: 25px;
+            }
+
+            .skills-title h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .skills-categories {
+                grid-template-columns: 1fr !important;
+            }
+
+            #about .row {
+                gap: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <script src="script.js"></script>
+    <nav id="header">
+        <div class="nav-logo">
+            <p class="nav-name">M</p>
+            <span>.</span>
+        </div>
+        <div class="nav-menu" id="myNavMenu">
+            <ul class="nav_menu_list">
+                <li class="nav_list">
+                    <a href="#home" class="nav-link active-link">Home</a>
+                    <div class="circle"></div>
+                </li>
+                <li class="nav_list">
+                    <a href="#about" class="nav-link">About</a>
+                    <div class="circle"></div>
+                </li>
+                <li class="nav_list">
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <div class="circle"></div>
+                </li>
+                <li class="nav_list">
+                    <a href="#contact" class="nav-link">Contact</a>
+                    <div class="circle"></div>
+                </li>
+            </ul>
+        </div>
+       
+        </div>
+        <div class="nav-menu-btn">
+            <i class="uil uil-bars" onclick="myMenuFunction()"></i>
+        </div>
+      </nav>
+
+      <main class="wrapper">
+        <section class="featured-box" id="home">
+            <div class="featured-text">
+              <div class="featured-text-card">
+                  <span>Michael Angelo</span>
+              </div>
+              <div class="featured-name">
+                <p>I'm <span class="typedText"></span></p>
+              </div>
+              <div class="featured-text-info">
+                  <p>Aspiring frontend developer with a passion for creating visually stunning
+                     and user-friendly websites.
+                  </p>
+              </div>
+              <div class="featured-text-btn">
+                <a href="assets/images/MichaelAngeloMuega.pdf" class="btn blue-btn" download="Michael_Angelo_Resume.pdf">
+                    Download my CV <i class="uil uil-arrow-down"></i>
+                </a>
+                 </button>
+            </div>
+              <div class="social_icons">
+                
+                
+                <a href="https://www.facebook.com/Michael.Angelo.Muega29/"><div class="icon"><i class="uil uil-facebook"></i></div> </a> 
+                <a href="https://github.com/pepsyblue7"><div class="icon"><i class="uil uil-github-alt"></i></div> </a> 
+                <a href="https://www.instagram.com/_bowkbowk/"> <div class="icon"><i class="uil uil-instagram-alt"></i></div> </a>
+              </div>
+            </div>
+            <div class="featured-image">
+              <div class="image">
+                  <img src="assets/images/profile.jpg" alt="avatar">
+              </div>
+            </div>
+            <div class="scroll-icon-box">
+              <a href="#about" class="scroll-btn">
+                  <i class="uil uil-mouse-alt"></i>
+                  <p>Scroll Down</p>
+              </a>
+            </div>
+         </section>
+
+         <section class="section" id="about">
+            <div class="top-header">
+              <h1>About Me</h1>
+            </div>
+            <div class="row">
+              <!-- Skills Section - Now appears first and centered -->
+              <div class="col">
+                <div class="skills-box">
+                  <div class="skills-title">
+                    <h2>Skills</h2>
+                  </div>
+                  
+                  <div class="skills-categories">
+                    <div class="skills-category" onclick="animateCategory(this)">
+                      <h3>Frontend</h3>
+                      <div class="skills-list">
+                        <span onclick="animateSkill(this, event)">HTML</span>
+                        <span onclick="animateSkill(this, event)">CSS</span>
+                        <span onclick="animateSkill(this, event)">Bootstrap</span>
+                        <span onclick="animateSkill(this, event)">JavaScript</span>
+                        <span onclick="animateSkill(this, event)">React</span>
+                      </div>
+                    </div>
+
+                    <div class="skills-category" onclick="animateCategory(this)">
+                      <h3>Backend</h3>
+                      <div class="skills-list">
+                        <span onclick="animateSkill(this, event)">Python</span>
+                      </div>
+                    </div>
+
+                    <div class="skills-category" onclick="animateCategory(this)">
+                      <h3>Database</h3>
+                      <div class="skills-list">
+                        <span onclick="animateSkill(this, event)">MySQL</span>
+                      </div>
+                    </div>
+
+                    <div class="skills-category" onclick="animateCategory(this)">
+                      <h3>UI/UX</h3>
+                      <div class="skills-list">
+                        <span onclick="animateSkill(this, event)">Canva</span>
+                        <span onclick="animateSkill(this, event)">Figma</span>
+                        <span onclick="animateSkill(this, event)">Bootstrap</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- About Information Section - Now appears second -->
+              <div class="col">
+                <div class="about-info">
+                  <h3></h3>
+                  <p>
+                    Hi there, I'm a third-year Computer Science student and an aspiring front-end developer.
+                    With a passion for creating clean, intuitive, and visually engaging web applications, 
+                    I'm continuously honing my skills in HTML, CSS, JavaScript, and modern front-end frameworks like React.
+                  </p>
+
+                  <h3></h3>
+                  <p>
+                    Beyond coding, I'm someone who values creativity, teamwork, and lifelong learning.
+                    I enjoy solving problems, collaborating with others, and bringing ideas to life through technology. I also like to go to gym and my Sport is Track And Field. I also like to listen to music a lot, my favorite artists are Kendrick Lamar, Drake, Future, Nle Choppa, Justin Bieber, Chris Brown, Lil tecca. In Local music, Alisson Shore specially because of his GARUDA ALBUM, Kiyo and also Because
+                  </p>
+
+                  <h3></h3>
+                  <p>
+                   I was raised by my aunt and uncle due to some family problems. They have helped me a lot from childhood up to now, and I’m truly grateful and lucky to have them both in my life. Of course, I also consider myself fortunate to have my father and parents as well.
+                  </p>
+                  <h3></h3>
+                  <p>
+                   My challenges in life are mostly about my personal life. I don't know why whenever something important happens to me, it always goes wrong or falls apart? Maybe as time goes by, I'm just learning from what happens to me and I'm not ready for this yet. I always reassure myself about all the good things happening to me, but why do I always hurt the people who are important to me? I don't know why or what it is. As time goes by, I've learned that I'm doing my best in everything and I'm trying not to regret those things, but there are really things I do that I can't control, even if I intend to. Hahaha but I always pray that my family, friends, and the people important to me are okay.
+                  </p>
+                     <h3></h3>
+                  <p>
+                   My future plan is to become even better than what I am now and to grow and grow not just physically, but also mentally and emotionally. I hope that someday I will have my own coffee shop.
+                  </p>
+                  <h3></h3>
+                 
+                </div>
+              </div>
+                      </div>
+                    </div>
+                  </div>
+           </section>
+
+           <section class="section" id="projects">
+            <div class="top-header">
+                <h1>Projects</h1>
+            </div>
+            <div class="project-container">
+                <!-- Project 1 -->
+                <div class="project-box">
+                    <img src="assets/images/643272cd-e556-4f06-9bee-8e85f94385f8.jpg" alt="Project 1" class="project-img">
+                    <h3>Project 1</h3>
+                    <label>CvSU Website</label>
+                </div>
+        
+                <!-- Project 2 -->
+                <div class="project-box">
+                    <img src="assets/images/462547566_1617657242209234_5941275009855093417_n copy.png" alt="Project 2" class="project-img">
+                    <h3>Project 2</h3>
+                    <label>Inventory System</label>
+                </div>
+        
+                <!-- Project 3 -->
+                <div class="project-box">
+                    <img src="assets/images/462578211_382877448145418_7382980132465884901_n.png" alt="Project 3" class="project-img">
+                    <h3>Project 3</h3>
+                    <label>Enrollment System</label>
+                </div>
+        
+            
+        </section>
+
+           <section class="section" id="contact">
+            <div class="top-header">
+                <h1>Get in touch</h1>
+                <span>Do you have a project in your mind, contact me here</span>
+              </div>
+              <div class="row">
+                 <div class="col">
+                    <div class="contact-info">
+                        <h2>Find Me <i class="uil uil-corner-right-down"></i></h2>
+                        <p><i class="uil uil-envelope"></i> Email:michaelmuega7@gmail.com</p>
+                        <p><i class="uil uil-phone"></i> Tel:09946178801 </p>
+                    </div>
+                 </div>
+                 <div class="col">
+                    <form action="https://formspree.io/f/xovqdbgq" method="POST" class="form-control">
+                        <div class="form-inputs">
+                          <input type="text" name="name" class="input-field" placeholder="Your Name" required>
+                          <input type="email" name="email" class="input-field" placeholder="Your Email" required>
+                        </div>
+                        <div class="text-area">
+                          <textarea name="message" placeholder="Your Message" required></textarea>
+                        </div>
+                        <div class="form-button">
+                          <button type="submit" class="btn">Send <i class="uil uil-message"></i></button>
+                        </div>
+                      </form>
+                     
+                    </div>
+                  </div>
+                </section>
+
+        </main>
+
+      <footer>
+        
+        <div class="top-footer">
+            <p>Michael Angelo</p>
+        </div>
+        <div class="middle-footer">
+            <ul class="footer-menu">
+                <li class="footer_menu_list">
+                    <a href="#home">Home</a>
+                </li>
+                <li class="footer_menu_list">
+                    <a href="#about">About</a>
+                </li>
+                <li class="footer_menu_list">
+                    <a href="#projects">Projects</a>
+                </li>
+                <li class="footer_menu_list">
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+      
+        </div>
+       
+      </footer>
+
+    </div>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <script>
+        function animateSkill(element, event) {
+          event.stopPropagation(); // Prevent category animation when clicking skill
+          
+          // Remove any existing animation classes
+          element.classList.remove('clicked');
+          
+          // Add the clicked animation class
+          element.classList.add('clicked');
+          
+          // Reset the background color after animation
+          setTimeout(() => {
+            element.classList.remove('clicked');
+          }, 500);
+        }
+
+        function animateCategory(element) {
+          // Remove any existing animation classes
+          element.classList.remove('animate', 'shake');
+          
+          // Randomly choose between pulse and shake animation
+          const animations = ['animate', 'shake'];
+          const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+          
+          element.classList.add(randomAnimation);
+          
+          // Remove the animation class after animation completes
+          setTimeout(() => {
+            element.classList.remove(randomAnimation);
+          }, 600);
+        }
+    </script>
+
+   
+</body>
+</html>
